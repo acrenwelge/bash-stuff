@@ -12,8 +12,10 @@ read -n 1 OVERRIDE
 
 if [ $OVERRIDE != 'n' ]; then
 do
-  for i in .bashrc .bash .bashprofile .vimrc
+  for i in .bashrc .bash_profile .vimrc 
+  do
     mv $INSTALL_DIR/$i $INSTALL_DIR/$i.old
+  done;
 done
 
 # Bash shell config
