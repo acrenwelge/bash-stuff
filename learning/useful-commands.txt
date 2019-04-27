@@ -1,0 +1,53 @@
+Here's some useful BASH commands
+
+Redo last command
+!!
+Run last command as root
+sudo !!
+
+Last command last arg
+!$
+
+Search through command history
+CTRL + r
+
+Fix command - use vim to fix your last, really long command
+fc
+
+Disown / detach process from your session - helpful for leaving processes running after logout
+disown -a
+
+Run command in the background
+mycommand
+CTRL + Z (pauses the process)
+bg (runs job in the background)
+
+or:
+mycommand &
+
+or: (invoke a process which ignores hangup signals and run in background)
+nohup mycommand &
+
+View currently executing jobs:
+jobs
+
+Run program and create a log file with 'tee' but only print 'Error's to the terminal
+./runProgram | tee -a myLog.txt | grep "Error"
+
+SSH Tunnel from local port lp to remote port rp
+ssh -L lp:127.0.0.1:rp uname@domain.com -N
+
+Brace expansion to quickly create directory structure
+mkdir -p folder/{a,b}/{f1,f2,f3}
+
+Terminal multiplexing
+- useful for multitasking, esp on remote servers via ssh
+- start tmux
+tmux
+tmux -CC # for iTerm2 usage / integration
+- create a new window
+CTRL + b
+- rename the window
+CTRL + ,
+- cycle through windows
+p, n (previous, next) 

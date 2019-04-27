@@ -14,8 +14,11 @@ thirdfun() {
   # we don't return values, but we can set a return status
   # 0 means success
   # non-0 return status means an error occurred
+  if [ -z $1 ]
+    then echo 'ERROR: must specify argument to this script'; return -1
+  fi
   if [ $1 -gt 5 ] 
-  then
+    then
     echo 'bad value'
 	return -1
   else
