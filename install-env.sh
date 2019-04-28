@@ -14,7 +14,7 @@ if [ $OVERRIDE != 'n' ]; then
 do
   for i in .bashrc .bash_profile .vimrc 
   do
-    mv $INSTALL_DIR/$i $INSTALL_DIR/$i.old
+    mv "$INSTALL_DIR/$i" "$INSTALL_DIR/$i.old"
   done;
 done
 
@@ -23,3 +23,4 @@ cp $CONFIG_DIR/.bashrc $HOME/.bashrc
 
 # Vim config
 cp $CONFIG_DIR/.vimrc $HOME/.vimrc
+

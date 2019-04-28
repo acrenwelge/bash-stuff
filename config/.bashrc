@@ -4,6 +4,9 @@ export HISTCONTROL=ignoreboth
 export HISTIGNORE="clear:history"
 export EDITOR="vim"
 set -o vi
+# enable colors
+export CLICOLOR=1
+export LSCOLORS=ExGxFxdxCxDxDxxbaDecac
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
