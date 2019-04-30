@@ -1,6 +1,10 @@
+#!/bin/bash
+
+# $1 - value
+
 # function declaration
 function firstfunc {
-  ls -la # 
+  ls -la  
 }
 
 # another way to declare a function
@@ -8,6 +12,7 @@ function firstfunc {
 secfunc() { # note - nothing in the ()...
   cd $1 # but we still access the argument here
   # use $1-$9 to get params passed in
+  local MYVAR='test me out'
 }
 
 thirdfun() {
@@ -34,6 +39,9 @@ echo foo{apple,banana}bar # fooapplebar foobananabar
 firstfunc
 
 secfunc '../'
+
+# this will be blank because MYVAR was a local variable in secfunc
+echo $MYVAR
 
 thirdfun $1
 

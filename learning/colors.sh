@@ -31,8 +31,18 @@ BgWhite='\x1b[47m'
 
 echo 'normal text'
 # the -e flag is needed to enable the backslashes
-echo -e "$FgRed some text in red"
-echo -e $Reset
+echo -e "${FgGreen}some text in green"
+
+echo -e "$Underscore this text is underlined! $Reset"
 
 echo -e "${BgCyan}this has a cyan background $Reset"
 echo -e "$FgBlack$BgYellow this is black text on a yellow background $Reset"
+
+# function to color the stderr as red
+color()(set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
+
+echo the lines below will be in red
+# we can color stderr red inline like below
+ls --some-invalid-flag 2> >(sed $'s,.*,\e[31m&\e[m,'>&2)
+# or use the function defined above
+color ls --some-invalid-flag 
