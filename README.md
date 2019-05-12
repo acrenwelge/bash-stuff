@@ -3,6 +3,7 @@
 The `config` folder contains environment configuration files for:
 * bash
 * vim
+* git
 
 To configure your environment, first clone this repo, then run the `install-env.sh` script:
 ```bash
