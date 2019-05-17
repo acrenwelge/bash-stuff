@@ -11,12 +11,11 @@ echo 'Remove old configuration files (y/n)? y - overwrite; n - rename old files 
 read -n 1 OVERRIDE 
 
 if [ $OVERRIDE != 'n' ]; then
-do
   for i in .bashrc .bash_profile .vimrc .gitconfig
   do
     mv "$INSTALL_DIR/$i" "$INSTALL_DIR/$i.old"
   done;
-done
+fi
 
 # Bash shell config
 cp $CONFIG_DIR/.bash_profile $INSTALL_DIR/.bash_profile
