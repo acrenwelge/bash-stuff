@@ -18,9 +18,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Helpful aliases
-if [ $OSTYPE == 'gnu-linux' ]; then
+if [ $OSTYPE == 'gnu-linux' ] || [ $OSTYPE == 'msys' ]; then # only for linux, windows
   alias ll='ls -AFlh --group-directories-first'
-else
+else # for Mac
   alias ll='ls -AFlh'
 alias lf='ll -rt'
 alias q='exit'
