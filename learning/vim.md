@@ -8,8 +8,23 @@ I got started with vim from this [Youtube tutorial](https://www.youtube.com/watc
 Other editors include `nano`, `emacs`, and `pico`, but `vim` is by far the most powerful.
 
 `Vim` stands for "vi"-improved - `vi` was the original UNIX editor and `vim` is its successor.
+`vi` and `vim` commands both open `vim` on most systems.
 
 There is actually a built-in vim tutorial on the command line - just run `vimtutor`.
+
+### Exiting Vim!
+
+Many inexperienced vim users, including myself, have gotten lost trying to exit vim.
+There's a few commands you can enter to do this:
+
+* :q - quit (this will fail if you have made unsaved changes)
+* :wq - write/save and quit
+* :q! - force quit without saving
+
+And here's a few more general commands:
+* :w - write (for saving your work periodically)
+* :w <file> - write to <file>
+* :e <filename> - edit the file with vim (tab auto-completion works too!)
 
 ### Vim Modes
 
@@ -21,6 +36,11 @@ When working with `vim`, keep in mind there are different **modes** you can be i
 * Visual mode
 
 It's important to know which mode you are in so you don't enter the wrong key!
+
+Think of how painters use a brush when painting.
+Sometimes they have the brush on the canvas to paint (insert mode),
+sometimes they step back to look at the painting (normal mode),
+and sometimes they are mixing their palette to make more complex combinations of colors (command mode)
 
 When you first enter `vim`, you're in **normal** mode, so let's start with that...
 
@@ -53,6 +73,8 @@ Navigation can be done with several commands (no need to reach for arrow keys!):
 * Ctrl-y - scroll up a line
 * zz - recenter the screen at current line
 
+There's a lot of commands... they key is practice, practice, practice!
+
 #### Cut/Copy/Paste/Undo/Redo
 
 In normal mode, you can manipulate text in the document using the following commands:
@@ -64,9 +86,9 @@ In normal mode, you can manipulate text in the document using the following comm
 * u - undo
 * Ctrl-R - redo
 
-#### Flows - Multiply Commands!
+#### Motions - Multiply Commands!
 
-We can multiply commands to apply them more than once. The general syntax is:
+We can multiply our navigation and text manipulation commands to apply them more than once. The general syntax is:
 
 <number> <verb> <noun>
 
@@ -75,24 +97,39 @@ For example:
 * 3dj - delete the next 3 lines
 * 3dk - delete the previous 3 lines
 * 5yw - yank next 5 words
+* dap - delete a paragraph
 
 ## Command Mode
 
 Command mode is entered from normal mode using the colon (:). Here we can send commands for vim to execute.
+To look up more information on anything in vim, you can use the `:help` command.
+Our saving and quitting commands above used command mode.
 
-### Exiting Vim!
+The command syntax for **find & replace** is: `:%s/search/replace/gi`
+This uses a regular expression (the g is global search [not just on the current line], i is for ignoring case)
 
-Many inexperienced vim users, including myself, have gotten lost trying to exit vim.
-There's a few commands you can enter to do this:
+### Buffers, Windows, Tabs
+The following commands deal with buffers:
+* :n - go to next file (based on arglist passed to vim on the terminal)
+* :args - list out arglist
+* :bn - go to next buffer (buffer could be any file you've opened while in vim)
+* :buffers - print all the buffers
+* :bd - delete current buffer
 
-* :q - quit (this will fail if you have made unsaved changes)
-* :wq - write/save and quit
-* :q! - force quit without saving
+The following commands deal with windows, which are like buffer "viewports":
+* Ctrl-w s - split window
+* Ctrl-w v - split vertically
+* Ctrl-w q - quit a window
+* Ctrl-w r - rotate windows
+* Ctrl-w w - alternate windows
+* :sf <file> - split window and open <file> in it
+* :vert <command> - use vertical splitting with <command> (e.g. :vert :sf <file>)
 
-And here's a few more general commands:
-* :w - write (for saving your work periodically)
-* :w <file> - write to <file>
-* :e <filename> - edit the file with vim
+Tabs are collections of windows. Here's some commands for tabs:
+* gt / gT - go to next/prev tab
+* :tabc - close tab
+* :tabe - open tab
+* :20vs . - create 20 character vertical split on the left (useful for viewing directory structure: p - preview when hovering over the file)
 
 ### Insert Mode
 
@@ -141,18 +178,28 @@ To search for some text (from command mode), use a backslash `/` followed by the
 
 * ? - search backwards
 * * - search word under cursor
-* g* - search word under cursor (unbounded)
+* g* - search word under cursor (unbounded)*
 * n - next result
 * N - previous result
 
 ## Misc
 
 * % - go to matching parentheses or bracket
+* c - change, will cut text and start insert mode (e.g. cw - change word; ci{ - change everything in the brackets)
 * ggvG - motion to select entire file
+* gf - go to file (example: useful-commands.txt)
+* :args <file1> <file2> ... - set the arglist
+* :sall (or - :vert sall) - split all files in the arglist
+* :windo difft - perform a diff on all open windows
+
+if(true) {
+  // change me!
+}
 
 ## Config
 
-Some helpful general settings to put in .vimrc file - use :help <cmd> to look these up
+Some helpful general settings to put in .vimrc file - use :help <cmd> to look these up.
+You can also set these for any specific vim instance as well - just use : for the command (e.g. :set showcmd)
 
 set showcmd
 set number 
@@ -165,6 +212,40 @@ set relativenumber
 set expandtab
 set hlsearch
 syntax enable
+
+## Bonus
+
+Probably won't have time to cover these.. haven't used these as much, but try them out!
+
+### Marks
+
+* m{a-zA-Z} - set a custom location
+* `{a-zA-Z} - go to your mark
+
+### Jumps/Changes
+
+* Ctrl-o / Ctrl-i - cycle through jumplist
+* g; / g, - cycle through changes
+
+### Terminal
+
+* :! <command> - run a command in your terminal from vim and exit back to vim
+* :! bash - start a new bash shell ("exit" then ENTER to return to vim)
+* Ctrl-z to pause vim, brings you back to your terminal, then "fg" to resume vim
+
+## Resources
+
+Color schemes
+* https://vimcolors.com
+* https://bytefluent.com/vivify/
+
+Config file & Plugins
+* https://github.com/amix/vimrc
+* https://github.com/junegunn/fzf.vim
+* https://github.com/itchyny/lightline.vim
+* https://github.com/terryma/vim-multiple-cursors
+* https://github.com/scrooloose/nerdtree
+* https://github.com/mattn/emmet-vim
 
 ## QUESTIONS??
 
