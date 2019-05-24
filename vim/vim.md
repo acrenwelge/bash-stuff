@@ -15,6 +15,8 @@ Other editors include `nano`, `emacs`, and `pico`, but `vim` is by far the most 
 `Vim` stands for "vi"-improved - `vi` was the original UNIX editor and `vim` is its successor.
 `vi` and `vim` commands both open `vim` on most systems.
 
+There is actually a built-in vim tutorial on the command line - just run `vimtutor`.
+
 ### Exiting Vim!
 
 Many inexperienced vim users, including myself, have gotten lost trying to exit vim.
@@ -127,6 +129,7 @@ The following commands deal with windows, which are like buffer "viewports":
 * Ctrl-w w - alternate windows
 * :sf <file> - split window and open <file> in it
 * :vert <command> - use vertical splitting with <command> (e.g. :vert :sf <file>)
+* :set scrollbind - synchronize the scrolling of the different split windows
 
 Tabs are collections of windows. Here's some commands for tabs:
 * gt / gT - go to next/prev tab
@@ -190,10 +193,11 @@ To search for some text (from command mode), use a backslash `/` followed by the
 * % - go to matching parentheses or bracket (try it out [here])
 * c - change, will cut text and start insert mode (e.g. cw - change word; ci{ - change everything in the brackets)
 * ggvG - motion to select entire file
-* gf - go to file (example: useful-commands.txt)
+* gf - go to file (example: fileA.txt)
 * :args <file1> <file2> ... - set the arglist (passed to vim as command line arguments)
 * :sall (or - :vert sall) - split all files in the arglist
 * :windo difft - perform a diff on all open windows
+* vimdiff <file1> <file2> - bash command that does the same thing
 
 if(true) {
   // change me!
