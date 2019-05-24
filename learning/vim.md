@@ -1,6 +1,11 @@
 # Using `vim` - 5/30/19
 
-I got started with vim from this [Youtube tutorial](https://www.youtube.com/watch?v=Nim4_f5QUxA)
+## Resources
+
+I got started with vim from this [Youtube tutorial](https://www.youtube.com/watch?v=Nim4_f5QUxA).
+There is actually a built-in vim tutorial on the command line - just run `vimtutor`.
+I published this cheat sheet [here](https://github.com/acrenwelge/bash-stuff/learning/vim.md).
+If you want, follow along - grab the file: `curl https://raw.githubusercontent.com/acrenwelge/bash-stuff/master/learning/vim.md > vim.md`
 
 ## Overview
 
@@ -9,8 +14,6 @@ Other editors include `nano`, `emacs`, and `pico`, but `vim` is by far the most 
 
 `Vim` stands for "vi"-improved - `vi` was the original UNIX editor and `vim` is its successor.
 `vi` and `vim` commands both open `vim` on most systems.
-
-There is actually a built-in vim tutorial on the command line - just run `vimtutor`.
 
 ### Exiting Vim!
 
@@ -90,7 +93,7 @@ In normal mode, you can manipulate text in the document using the following comm
 
 We can multiply our navigation and text manipulation commands to apply them more than once. The general syntax is:
 
-<number> <verb> <noun>
+`<number> <verb> <noun>`
 
 For example:
 * 4w  - move forward by 4 words
@@ -117,7 +120,7 @@ The following commands deal with buffers:
 * :bd - delete current buffer
 
 The following commands deal with windows, which are like buffer "viewports":
-* Ctrl-w s - split window
+* (passed to vim as command line argument Ctrl-w s - split window
 * Ctrl-w v - split vertically
 * Ctrl-w q - quit a window
 * Ctrl-w r - rotate windows
@@ -177,18 +180,18 @@ Also, indentation of many lines can be done easily with `>` this way. (`>>` to i
 To search for some text (from command mode), use a backslash `/` followed by the text to search for.
 
 * ? - search backwards
-* * - search word under cursor
-* g* - search word under cursor (unbounded)*
+* \* - (ignore the \ - it's for markdown formatting) search word under cursor
+* g\* - (ignore the \ - it's for the markdown formatting) search word under cursor (unbounded)
 * n - next result
 * N - previous result
 
 ## Misc
 
-* % - go to matching parentheses or bracket
+* % - go to matching parentheses or bracket (try it out [here])
 * c - change, will cut text and start insert mode (e.g. cw - change word; ci{ - change everything in the brackets)
 * ggvG - motion to select entire file
 * gf - go to file (example: useful-commands.txt)
-* :args <file1> <file2> ... - set the arglist
+* :args <file1> <file2> ... - set the arglist (passed to vim as command line arguments)
 * :sall (or - :vert sall) - split all files in the arglist
 * :windo difft - perform a diff on all open windows
 
@@ -198,8 +201,8 @@ if(true) {
 
 ## Config
 
-Some helpful general settings to put in .vimrc file - use :help <cmd> to look these up.
-You can also set these for any specific vim instance as well - just use : for the command (e.g. :set showcmd)
+Some helpful general settings to put in your `$HOME/.vimrc` file - use `:help <cmd>` to look these up.
+You can also set these for any specific vim instance as well - just use : for the command (e.g. `:set showcmd`)
 
 set showcmd
 set number 
