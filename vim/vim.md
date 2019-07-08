@@ -4,18 +4,30 @@
 
 I got started with vim from this [Youtube tutorial](https://www.youtube.com/watch?v=Nim4_f5QUxA).
 There is actually a built-in vim tutorial on the command line - just run `vimtutor`.
-I published this cheat sheet [here](https://github.com/acrenwelge/bash-stuff/learning/vim.md).
-If you want, follow along - grab the file: `curl https://raw.githubusercontent.com/acrenwelge/bash-stuff/master/learning/vim.md > vim.md`
+I published this cheat sheet [here](https://github.com/acrenwelge/bash-stuff/vim/vim.md).
+If you want, follow along - grab the file: `curl https://raw.githubusercontent.com/acrenwelge/bash-stuff/master/vim/vim.md > vim.md`
 
 ## Overview
 
-`vim` is a powerful command-line tool for text editing in UNIX systems.
+`vim` is a powerful command-line tool for text editing in UNIX systems (comes with Git Bash on Windows).
 Other editors include `nano`, `emacs`, and `pico`, but `vim` is by far the most powerful.
 
 `Vim` stands for "vi"-improved - `vi` was the original UNIX editor and `vim` is its successor.
 `vi` and `vim` commands both open `vim` on most systems.
 
-There is actually a built-in vim tutorial on the command line - just run `vimtutor`.
+Since vim is lightweight and included on most all UNIX systems, it is useful to know for situations when
+work needs to be done directly on a server or you don't want to reach for an IDE - thus, DevOps is one area 
+of application. Also, it's useful with git - `git commit` without the `-m` flag opens the commit message 
+with your default editor (typically vim).
+
+If you're going to teach vim, or any command-line editor, or we include it in the curriculum, I'd recommend 
+covering it with other Linux topics and DevOps.
+
+Even though it is lightweight, it can be customized and upgraded via a configuration file as well as plugins. 
+Some even use vim as a full-blown IDE. It can support syntax highlighting, directory navigation, multiple windows 
+and panes, file diffing, and even running shell commands directly. Basically, vim can do all the things.
+
+Questions before we begin?
 
 ### Exiting Vim!
 
@@ -35,10 +47,10 @@ And here's a few more general commands:
 
 When working with `vim`, keep in mind there are different **modes** you can be in:
 
-* Normal mode
-* Command mode
-* Insert mode
-* Visual mode
+* Normal mode - navigate the buffer (file)
+* Command mode - send commands for vim to execute
+* Insert mode - insert text into the buffer
+* Visual mode - visually select text
 
 It's important to know which mode you are in so you don't enter the wrong key!
 
@@ -218,7 +230,7 @@ set smartcase
 set relativenumber
 set expandtab
 set hlsearch
-syntax enable
+syntax enable # syntax highlighting!
 
 ## Bonus
 
