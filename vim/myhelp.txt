@@ -1,0 +1,154 @@
+*myhelp.txt*	For Vim version 7.4	Last change: 2014 October 8
+*myhelp*
+
+Andrew's cheat sheet of Vim stuff he always forgets.
+
+===============================================================================
+CONTENTS
+
+ 	1. Common Commands...................................|myhelp-commands|
+	2. Normal Mode.......................................|myhelp-normal|
+	3. Visual Mode.......................................|myhelp-visual|
+	4. Insert Mode.......................................|myhelp-insert|
+	5. Buffers, Windows, Tabs............................|myhelp-buffer|
+	6. Misc..............................................|myhelp-misc|
+	7. Rebuilding this file
+
+===============================================================================
+1. Common Commands                                     *myhelp-commands*
+
+   - /pattern : search for "pattern" in the current buffer
+   - * : search for all occurences of current word
+   - :%s/search/replace/gie : search & replace (g for globally instead of single line, i for ignore case, e for ignoring errors if pattern not found)
+   - !command : run command on the command line
+   - :read !command : brings result of command into the file
+   - :se : show all settings that differ from defaults
+
+===============================================================================
+2. Normal Mode                                         *myhelp-normal*
+
+   - :wall : Save modified buffers
+   - :x : Save buffer only if modified, then exit (better than :wq)
+   - ]] : next section
+   - ]m : next method
+   - [m : back to the start of the method
+   - ) : Next sentence
+   - w : move forward by a "word" (stops at punctuation)
+   - W : move forward by a "WORD" (skips punctuation - here, words are only separated by whitespace)
+   - b : move backwards by a "word"
+   - B : move backwards by a "WORD"
+   - e : move to end of next "word"
+   - f <char> : move forward to the first appearance of <char>
+   - F <char> : move backward to the first appearance of <char>
+   - gg : move to beginning of the file
+   - Shift-G : move to end of the file
+   - 0 : move to beginning of the line
+   - ^ : move to beginning of the line (after leading whitespace)
+   - $ : move to the end of the line
+   - <C-D> : page down
+   - <C-u> : page up
+   - <C-e> : scroll down a line
+   - <C-y> : scroll up a line
+   - z : Current line at the top
+   - z- : current line at the bottom
+   - z. or zz : current line at the center
+   - /<C-R><C-W>: Pull word into command line (or search)
+   - :reg : list registers (and show what’s in them)
+   - % : go to matching parentheses or bracket (try it out [here])
+   - c : change, will cut text and start insert mode (e.g. cw - change word; ci{ - change everything in the brackets)
+   - ggvG : motion to select entire file
+   - gf : go to file (example: fileA.txt)
+
+===============================================================================
+3. Visual Mode                                         *myhelp-visual*
+
+   - SHIFT-[LEFT/RIGHT] : Shift one word left or right
+   - J : Join the highlighted lines, removing unnecessary whitespace.
+   - va' : select a single-quoted string (also works with " and `)
+   - vi' : select the contents of a single-quoted string
+   - vab : select a "block" (works differently in different langs)
+   - vat : select a <tag> and its contents (use i instead of a for just
+     contents)
+
+We can do multi-line inserts and deletions with visual blocks
+
+   1. Press <C-v> to start a visual-block.
+   2. You can move up and down lines with j and k to select blocks. 
+   3. To insert text, press I (lowercase i will not work) to start insertion
+   4. Press ESC and your insertion appears on each line (works with deletion as well)
+
+Also, indentation of many lines can be done easily with '>' this way. ('>>' to indent a single line in normal mode)
+
+===============================================================================
+4. Insert Mode                                         *myhelp-insert*
+
+   - <C-N>: Complete word
+   - <C-N><C-P>: Complete word (?)
+   - <C-X><C-L>: Complete line (!!)
+   - s : Delete character under cursor and enter insert mode
+   - S : Delete line and begin insert at beginning of same line
+   - a : Enter insert mode _after_ cursor
+   - A : Enter insert mode at the end of the line
+   - o : Enter insert mode on the next line
+   - O : Enter insert mode on the above line
+   - C : Delete from cursor to end of line and begin insert
+   - r : replace next character
+   - R : replace mode
+
+
+===============================================================================
+5. Buffers, Windows, Tabs                              *myhelp-buffers*
+
+   - :n : go to next file (based on arglist passed to vim on the terminal)
+   - :args : list out arglist
+   - :bn : go to next buffer (buffer could be any file you've opened while in vim)
+   - :buffers : print all the buffers
+   - :bd : delete current buffer
+   - :args <file1> <file2> ... : set the arglist (passed to vim as command line arguments)
+   - :sall (or :vert sall) : split all files in the arglist
+   - :windo difft : perform a diff on all open windows
+   - vimdiff <file1> <file2> : bash command that does the same thing
+
+The following commands deal with windows, which are like buffer "viewports":
+   - (passed to vim as command line argument <C-W> s : split window
+   - <C-W> v : split vertically
+   - <C-W> q : quit a window
+   - <C-W> r : rotate windows
+   - <C-W> w : alternate windows
+   - :sf <file> : split window and open <file> in it
+   - :vert <command> : use vertical splitting with <command> (e.g. :vert :sf <file>)
+   - :set scrollbind : synchronize the scrolling of the different split windows
+
+Tabs are collections of windows. Here's some commands for tabs:
+   - :newtab : open a new tab
+   - :tabc : close tab
+   - :tabe : open tab
+   - gt / gT : go to next/prev tab
+   - :20vs . : create 20 character vertical split on the left (useful for viewing directory structure: p - preview when hovering over the file)
+
+===============================================================================
+6. Misc                                                *myhelp-misc*
+
+Some helpful general settings to put in your '$HOME/.vimrc' file - use ':help <cmd>' to look these up.
+You can also set these for any specific vim instance as well - just use : for the command (e.g. ':set showcmd')
+
+set showcmd
+set number 
+set cursorline
+set ruler
+set incsearch
+set wildmenu
+set smartcase
+set relativenumber
+set expandtab
+set hlsearch
+syntax enable
+
+===============================================================================
+7. Rebuilding this file.
+
+This file is loaded as a plugin. If you ever need to rebuild the tags file, run
+this command: 
+   :helpt /path/to/this/directory
+
+You may need to restart VIM to see the updated version.
