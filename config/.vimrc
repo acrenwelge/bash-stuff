@@ -14,6 +14,9 @@ vno <up> <Nop>
 vno <right> <Nop>
 vno <left> <Nop>
 
+" Other custom mappings
+map <F2> :help<Space>myhelp
+
 " Set some helpful general settings - use :help <cmd> to look these up
 
 set showcmd
