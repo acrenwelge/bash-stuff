@@ -1,0 +1,6 @@
+region = "us-central1"
+region_zone = "us-central1-a"
+project_name = "expense-reimbursement-system"
+credentials_file_path = "~/.gcloud/Terraform.json"
+public_key_path = "~/.ssh/personal-ec2-key.pem"
+private_key_path = "~/.ssh/personal-ec2-key.pem"
