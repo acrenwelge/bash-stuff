@@ -19,6 +19,12 @@ an argument to the script.
 
 The `utils` folder contains several custom utilities:
 * `cf` - for creating files with boilerplate code (bash, java, python, html)
+* `addMem` - for creating and activating swap files for extra memory on Linux machines
+* `dockersetup` - script for post-docker installation (so there's no need for `sudo` with `docker`)
+* `mkec2` - spin up an Amazon Linux EC2 instance on AWS
+* `mkgcpvm` - spin up a Linux VM on GCP
+* `pubip` - retrieve your public IP address
+* `mans` - search through `man` pages for whatever argument is given
 
 Simply run the `install-utils.sh` script to install the above utilities:
 ```bash
