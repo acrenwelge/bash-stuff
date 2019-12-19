@@ -127,7 +127,7 @@ This uses a regular expression (the g is global search [not just on the current 
 
 ### Buffers, Windows, Tabs
 The following commands deal with buffers:
-* :n - go to next file (based on arglist passed to vim on the terminal)
+* :n / :N - go to next / previous file (based on arglist passed to vim on the terminal)
 * :args - list out arglist
 * :bn - go to next buffer (buffer could be any file you've opened while in vim)
 * :buffers - print all the buffers

@@ -10,7 +10,7 @@ KEY=andrew-ec2-key
 SEC_GRP=sg-028e174ec1aa02227 
 SUBNET=subnet-e2f0a086
 
-aws ec2 run-instances --image-id $IMAGE --count 1 --instance-type $SIZE --key-name $KEY -security-group-ids $SEC_GRP --subnet-id $SUBNET
+aws ec2 run-instances --image-id $IMAGE --count 1 --instance-type $SIZE --key-name $KEY --security-group-ids $SEC_GRP --subnet-id $SUBNET
 
 # terminate with:
 # aws ec2 terminate-instances --instance-id <id1> <id2> ...
