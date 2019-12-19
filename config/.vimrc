@@ -16,6 +16,7 @@ vno <left> <Nop>
 
 " Other custom mappings
 map <F2> :help<Space>myhelp
+cmap w!! w !sudo tee > /dev/null %
 
 " Set some helpful general settings - use :help <cmd> to look these up
 
