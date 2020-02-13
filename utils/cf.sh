@@ -16,6 +16,8 @@
 # - html (.html)
 
 FILE=$1
+if [[ -z $FILE ]]; then echo 'Please give file name' && exit; fi
+
 FILENAME=${FILE%.*} # delete everything after the last "."
 EXT=${FILE##*.} # delete everything before the last "."
 
@@ -34,7 +36,7 @@ function checkFile() {
     else
       echo 'File detected with same name, cannot override. Exiting'
       exit 1
-    fi 
+    fi
   fi
 }
 
@@ -47,45 +49,58 @@ function createBashScript() {
 function createJavaFile() {
   checkFile $FILE
   read -p 'Enter the package: ' PACKAGE
-  echo "package $PACKAGE;" > $FILE
-  echo '' >> $FILE
-  echo "public class $FILENAME {" >> $FILE
-  echo "  public static void main(String[] args) {" >> $FILE
-  echo "    System.out.println(\"$GEN_CONTENT\");" >> $FILE
-  echo '  }' >> $FILE
-  echo '}' >> $FILE
+  if [ -n $PACKAGE ]; then
+    echo "package $PACKAGE;" > $FILE
+  fi
+  if [ -z $PACKAGE ];
+    then echo 'NO PACKAGE PROVIDED' && exit
+  fi
+
+  cat >> $FILE <<EOF
+public class $FILENAME {
+  public static void main(String[] args) {
+    System.out.println(\"$GEN_CONTENT\");"
+  }
+}
+EOF
 }
 
 function createPythonScript() {
   checkFile $FILE
-  echo 'def main():' > $FILE
-  echo "  print(\"$GEN_CONTENT\")" >> $FILE
-  echo '' >> $FILE
-  echo "if __name__ == '__main__':" >> $FILE
-  echo '  main()' >> $FILE
+  cat >> $FILE <<EOF
+def main():
+  print("$GEN_CONTENT")
+
+if __name__ == '__main__':
+  main()
+EOF
 }
 
 function createHtml() {
   checkFile $FILE
-  echo "<!DOCTYPE html>" > $FILE
-  echo "<html>" >> $FILE
-  echo "<head>" >> $FILE
-  echo "  <meta charset="UTF-8">" >> $FILE
-  echo "  <title>Hello world</title>" >> $FILE
-  echo "</head>" >> $FILE
-  echo "<body>" >> $FILE
-  echo "  <h1>Hello World!</h1>" >> $FILE
-  echo "</body>" >> $FILE
-  echo "</html>" >> $FILE 
+  cat >> $FILE << EOF
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello world</title>
+</head>
+<body>
+  <h1>Hello World!</h1>
+</body>
+</html>
+EOF
 }
 
-if [ $EXT = "sh" ]; then
+if [[ $EXT = "sh" ]]; then
   createBashScript
-elif [ $EXT = "java" ]; then
+elif [[ $EXT = "java" ]]; then
   createJavaFile
-elif [ $EXT = "py" ]; then
+elif [[ $EXT = "py" ]]; then
   createPythonScript
-elif [ $EXT = "html" ]; then
+elif [[ $EXT = "html" ]]; then
   createHtml
-else echo "invalid extension $EXT" 
+else echo "invalid extension $EXT"
 fi
+
+vi $FILE

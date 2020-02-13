@@ -1,3 +1,4 @@
+set nocompatible
 " Unmap the arrow keys
 no <down> <Nop>
 no <up> <Nop>
@@ -14,22 +15,71 @@ vno <up> <Nop>
 vno <right> <Nop>
 vno <left> <Nop>
 
+" Helpful navigation - buffers, windows, tabs
+map <C-K> :bprev<CR>
+map <C-J> :bnext<CR>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+" Resizing windows
+nnoremap + <C-W>+<CR>
+nnoremap - <C-W>-<CR>
+" Not working yet...
+nnoremap <S-left> <C-W>'<
+nnoremap <S-right> <C-W>'>
+
+" Apply . command in normal mode to any visual selection
+vnoremap . :normal.<CR>
+" Move visual selection
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+ 
 " Other custom mappings
 map <F2> :help<Space>myhelp
+nmap <silent> ,\ :nohlsearch<CR>
 
 " Set some helpful general settings - use :help <cmd> to look these up
-
 set showcmd
+set autoread
+set autowrite
+set laststatus=2
+set hidden
 set number " line numbers
 set cursorline
 set ruler
 set incsearch " searched strings are highlighted while typing
 set wildmenu
-set smartcase
 set relativenumber
-set expandtab
 set hlsearch
+set ignorecase
+set smartcase
+set mouse=a
+set autoindent
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set nowrap
+set linebreak
+set scrolloff=3
+set sidescrolloff=5
+set confirm
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
+set undofile " persistent undo
+set undodir=~/.vim/undodir
 syntax enable
+colorscheme desert
+
+" Folds
+set foldenable        "Enable folding
+set foldlevelstart=10 "Open most of the folds by default. If set to 0, all folds will be closed. 
+set foldnestmax=10    "Folds can be nested. Setting a max value protects you from too many folds.
+set foldmethod=manual "Defines the type of folding.
+
+" highlight trailing whitespace
+match ErrorMsg '\s\+$'
+" remove trailing whitespaces automatically
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Below is the default settings from $VIMRUNTIME/vimrc_example.vim
 " The commands in this are executed when the GUI is started, after the vimrc

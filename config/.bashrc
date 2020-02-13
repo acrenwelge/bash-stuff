@@ -27,6 +27,8 @@ alias lf='ll -rt'
 alias q='exit'
 alias c='clear'
 alias h='history'
+alias gs='git status'
+alias gl='git log'
 
 # POWERLINE vim plugin - enable in iTerm2 only
 if [ "$TERM_PROGRAM" == "iTerm.app" ]; then
