@@ -34,10 +34,11 @@ vnoremap . :normal.<CR>
 " Move visual selection
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
- 
+
 " Other custom mappings
 map <F2> :help<Space>myhelp
 nmap <silent> ,\ :nohlsearch<CR>
+cmap w!! w !sudo tee > /dev/null %
 
 " Set some helpful general settings - use :help <cmd> to look these up
 set showcmd
@@ -72,7 +73,7 @@ colorscheme desert
 
 " Folds
 set foldenable        "Enable folding
-set foldlevelstart=10 "Open most of the folds by default. If set to 0, all folds will be closed. 
+set foldlevelstart=10 "Open most of the folds by default. If set to 0, all folds will be closed.
 set foldnestmax=10    "Folds can be nested. Setting a max value protects you from too many folds.
 set foldmethod=manual "Defines the type of folding.
 
