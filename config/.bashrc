@@ -27,6 +27,8 @@ alias lf='ll -rt'
 alias q='exit'
 alias c='clear'
 alias h='history'
+alias gs='git status'
+alias gl='git log'
 # list the last commit for each remote branch sorted by most recent commit date
 alias gitlatest='for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r'
 
