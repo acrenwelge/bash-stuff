@@ -1,4 +1,5 @@
 set nocompatible
+
 " Unmap the arrow keys
 no <down> <Nop>
 no <up> <Nop>
@@ -36,9 +37,49 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Other custom mappings
-map <F2> :help<Space>myhelp
+map <F2> :help<Space>myhelp<CR>
+nnoremap <F3> gg=G``zz
 nmap <silent> ,\ :nohlsearch<CR>
 cmap w!! w !sudo tee > /dev/null %
+
+" vim-plug plugin manager
+call plug#begin('~/.vim/plugins')
+Plug 'junegunn/vim-emoji'
+Plug 'tpope/vim-fugitive'
+Plug 'frazrepo/vim-rainbow'
+Plug 'itchyny/lightline.vim'
+Plug 'preservim/nerdcommenter'
+call plug#end()
+
+" enable rainbow brackets
+let g:rainbow_active = 1
+
+" setup emojis
+set completefunc=emoji#complete
+" manually insert emoji: CTRL-V in insert mode then enter hex unicode value
+" CTRL-X CTRL-U in insert mode to get autocomplete menu
+" remap F4 to replace emoji abbreviations
+nnoremap <F4> :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g <CR>
+
+" Emoji shortcuts for common emojis
+ab :smile: 😊
+ab :) 😊
+ab ;) 😉
+ab :check_mark: ✅
+ab :warning: ⚠
+ab :bulb: 💡
+ab :pushpin: 📌
+ab :point_right: 👉
+ab :point_left: 👈
+ab :point_up: 👆
+ab :point_down: 👇
+ab :book: 📖
+ab :link: 🔗
+ab :wrench: 🔧
+ab :info: 🛈
+ab :telephone: 📞
+ab :email: 📧
+ab :computer: 💻
 
 " Set some helpful general settings - use :help <cmd> to look these up
 set showcmd
@@ -81,6 +122,8 @@ set foldmethod=manual "Defines the type of folding.
 match ErrorMsg '\s\+$'
 " remove trailing whitespaces automatically
 autocmd BufWritePre * :%s/\s\+$//e
+
+set keywordprg=google " run 'google' instead of man when K is pressed
 
 " Below is the default settings from $VIMRUNTIME/vimrc_example.vim
 " The commands in this are executed when the GUI is started, after the vimrc
