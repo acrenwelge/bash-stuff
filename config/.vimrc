@@ -45,16 +45,19 @@ cmap w!! w !sudo tee > /dev/null %
 " vim-plug plugin manager
 call plug#begin('~/.vim/plugins')
 Plug 'junegunn/vim-emoji'
-Plug 'tpope/vim-fugitive'
-Plug 'frazrepo/vim-rainbow'
-Plug 'itchyny/lightline.vim'
-Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-fugitive' "git wrapper
+Plug 'frazrepo/vim-rainbow' "color bracket pairs differently
+Plug 'itchyny/lightline.vim' "status bar for vim
+Plug 'preservim/nerdcommenter' "use  <Leader>cc to comment lines (<Leader> is \ by default) (use :echo mapleader to see)
 Plug 'mattn/emmet-vim'
 Plug 'valloric/youcompleteme'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
-" enable rainbow brackets
-let g:rainbow_active = 1
+" enable rainbow brackets for JS,TS,Java,Python
+au FileType js,ts,css,scss,java,py call rainbow#load()
+" for global config (disabled b/c it messes with HTML syntax highlighting
+" let g:rainbow_active = 1
 
 " setup emojis
 set completefunc=emoji#complete

@@ -24,3 +24,4 @@ brew install sqlite
 brew install tmux
 brew install xz
 brew install zsh
+brew install macvim

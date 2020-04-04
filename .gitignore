@@ -1,5 +1,6 @@
 # Created by https://www.gitignore.io/api/terraform
 # Edit at https://www.gitignore.io/?templates=terraform
+.DS_Store
 
 ### Terraform ###
 # Local .terraform directories
