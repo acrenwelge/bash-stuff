@@ -22,6 +22,8 @@ if [ $OSTYPE == 'gnu-linux' ] || [ $OSTYPE == 'msys' ]; then # only for linux, w
   alias ll='ls -AFlh --group-directories-first'
 else # for Mac
   alias ll='ls -AFlh'
+  alias vi='mvim -v'
+  alias vim='mvim -v'
 fi
 alias lf='ll -rt'
 alias q='exit'
@@ -37,7 +39,7 @@ if [ "$TERM_PROGRAM" == "iTerm.app" ]; then
   powerline-daemon -q
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
-  . '/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/powerline/bindings/bash/powerline.sh'
+  . '/usr/local/lib/python3.7/site-packages/powerline/bindings/bash/powerline.sh'
 fi
 
 # Colors!!!

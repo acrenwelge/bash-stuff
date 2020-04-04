@@ -49,6 +49,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'frazrepo/vim-rainbow'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdcommenter'
+Plug 'mattn/emmet-vim'
+Plug 'valloric/youcompleteme'
 call plug#end()
 
 " enable rainbow brackets
