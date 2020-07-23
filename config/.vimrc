@@ -1,5 +1,14 @@
 set nocompatible
+" quick command to edit and source this file
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Basic navigation
+nnoremap <down> :move +1 <CR>
+nnoremap <up> :move -2 <CR>
+nnoremap H ^
+nnoremap L $
+inoremap jk <Esc>
 " Unmap the arrow keys
 no <down> <Nop>
 no <up> <Nop>
@@ -15,8 +24,11 @@ vno <down> <Nop>
 vno <up> <Nop>
 vno <right> <Nop>
 vno <left> <Nop>
+" move vertically by visual line with j and k
+nnoremap j gj
+nnoremap k gk
 
-" Helpful navigation - buffers, windows, tabs
+" More navigation - buffers, windows, tabs
 map <C-K> :bprev<CR>
 map <C-J> :bnext<CR>
 nnoremap <C-H> <C-W><C-H>
@@ -29,6 +41,12 @@ nnoremap - <C-W>-<CR>
 " Not working yet...
 nnoremap <S-left> <C-W>'<
 nnoremap <S-right> <C-W>'>
+" Redefining spacebar
+nnoremap <Space> viw
+vnoremap <Space> v
+" Quoting
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+vnoremap <leader>" v`<i"<Esc>`>i"<Esc>
 
 " Apply . command in normal mode to any visual selection
 vnoremap . :normal.<CR>
@@ -38,14 +56,22 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Other custom mappings
 map <F2> :help<Space>myhelp<CR>
-nnoremap <F3> gg=G``zz
 nmap <silent> ,\ :nohlsearch<CR>
+" override when not enough permissions
 cmap w!! w !sudo tee > /dev/null %
+" swap the J and \ J commands - J should split and \ J should join lines
+nnoremap J i<CR><Esc>
+nnoremap <Leader>J J
+" convenient for clearing highlights after search
+nmap ,, :nohlsearch<CR>
+
+let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 
 " vim-plug plugin manager
 call plug#begin('~/.vim/plugins')
 Plug 'junegunn/vim-emoji'
-Plug 'tpope/vim-fugitive' "git wrapper
+"Plug 'tpope/vim-fugitive' "git wrapper
 Plug 'frazrepo/vim-rainbow' "color bracket pairs differently
 Plug 'itchyny/lightline.vim' "status bar for vim
 Plug 'preservim/nerdcommenter' "use  <Leader>cc to comment lines (<Leader> is \ by default) (use :echo mapleader to see)
@@ -53,6 +79,9 @@ Plug 'mattn/emmet-vim'
 Plug 'valloric/youcompleteme'
 Plug 'jiangmiao/auto-pairs'
 call plug#end()
+
+" close the autocomplete info window after completing
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " enable rainbow brackets for JS,TS,Java,Python
 au FileType js,ts,css,scss,java,py call rainbow#load()
@@ -63,8 +92,8 @@ au FileType js,ts,css,scss,java,py call rainbow#load()
 set completefunc=emoji#complete
 " manually insert emoji: CTRL-V in insert mode then enter hex unicode value
 " CTRL-X CTRL-U in insert mode to get autocomplete menu
-" remap F4 to replace emoji abbreviations
-nnoremap <F4> :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g <CR>
+" remap F3 to replace emoji abbreviations
+nnoremap <F3> :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g <CR>
 
 " Emoji shortcuts for common emojis
 ab :smile: 😊
@@ -124,11 +153,17 @@ set foldnestmax=10    "Folds can be nested. Setting a max value protects you fro
 set foldmethod=manual "Defines the type of folding.
 
 " highlight trailing whitespace
-match ErrorMsg '\s\+$'
+" match ErrorMsg '\s\+$'
 " remove trailing whitespaces automatically
 autocmd BufWritePre * :%s/\s\+$//e
 
 set keywordprg=google " run 'google' instead of man when K is pressed
+
+" Abbreviations / Typo Fixes
+iabbrev adn and
+iabbrev tehn then
+iabbrev waht what
+
 
 " Below is the default settings from $VIMRUNTIME/vimrc_example.vim
 " The commands in this are executed when the GUI is started, after the vimrc

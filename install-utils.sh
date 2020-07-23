@@ -11,4 +11,8 @@ for FILE in $(ls $UTIL_DIR); do
   cp $UTIL_DIR/$FILE $INSTALL_DIR/${FILE%.*}
 done
 
+# install open source utilities
+curl https://raw.githubusercontent.com/coryfklein/sw/master/sw > "$INSTALL_DIR/sw"
+chmod a+x "$INSTALL_DIR/sw" # stopwatch utility
+
 echo "Installation complete!"
