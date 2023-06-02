@@ -2,11 +2,7 @@
 
 # TODO:
 # - figure out bash script permissions
-
-# This script initializes a file defined by the user (cf == create file)
-# Script parameters are:
-# -o flag will overwrite existing files
-# filename - the name of the file to create
+# - add overwrite option
 
 # The filename will be parsed to check its extension and determine which type of file to create
 # Possible file types are:
@@ -14,6 +10,18 @@
 # - java (.java)
 # - python (.py)
 # - html (.html)
+
+Help()
+{
+   # Display Help
+   echo "This script initializes a file defined by the user (cf == create file)"
+   echo
+   echo "Syntax: cf [-o|h] FILENAME"
+   echo "options:"
+   echo "o     Overwrite existing file"
+   echo "h     Print this help."
+   echo
+}
 
 FILE=$1
 if [[ -z $FILE ]]; then echo 'Please give file name' && exit; fi
@@ -24,12 +32,12 @@ EXT=${FILE##*.} # delete everything before the last "."
 # other script variables
 PS3="=>"
 GEN_CONTENT="Hello world!"
-OVERWRITE='true'
+OVERWRITE='false'
 
 # Functions to create the files
 function checkFile() {
   if [ -f $FILE ]; then
-    if [ "$OVERRIDE" == 'true' ]; then
+    if [ "$OVERWRITE" == 'true' ]; then
       echo "File with same name detected, renaming to $FILE.old"
       mv $FILE $FILE.old
       return
